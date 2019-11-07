@@ -5,115 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Cat Detect</title>
-    <link rel="stylesheet" href="normalize.css" />
-    <style>
-      img {
-        width: 100%;
-        display: block;
-      }
-
-      form {
-        width: 80%;
-        height: 50px;
-        text-align: center;
-        padding: 10%;
-        border: 3px red dotted;
-        cursor: pointer;
-      }
-
-      .wrapper {
-        margin: 0 auto;
-        max-width: 1440px;
-        width: 80%;
-      }
-
-      .image-container {
-        width: 50%;
-        margin: 50px;
-      }
-
-      .flex-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      h1 {
-        font-size: 25px;
-        margin-top: 50px;
-      }
-
-      h2 {
-        font-size: 50px;
-        padding: 30px;
-      }
-
-      p {
-        font-size: 20px;
-      }
-
-      .dz-preview {
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
     <div class="wrapper flex-container">
-      <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-
       <h1>Cat Classifier</h1>
 
       <div class="image-container">
-        <img src="./saian.jpg" id="img" alt="cat image" />
+        <img src="./images/Placeholder.jpg" id="img" alt="cat image" />
       </div>
 
+      <!-- results -->
       <h2 class="show-cats"></h2>
+      <!-- drag drop form -->
       <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
-        <p class="dz-message">Please Upload your cat here!</p>
+        <p class="dz-message">Please Upload your File cat here!</p>
+      </form>
+      <!-- Url form -->
+      <form action="" class="url-upload">
+        <input type="text" />
+        <input type="submit" />
       </form>
     </div>
 
+    <section class="Examples">
+      <h2>You can select some of these cats to test the app:</h2>
+      <ul>
+        <li>
+          <a href="#"
+            ><img
+              src="./images/british-short-hair.webp"
+              alt="british short hair"
+          /></a>
+        </li>
+        <li>
+          <a href="#"><img src="./images/Egyptian.jpg" alt="egyptian cat"/></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="./images/Persian 2.jpg" alt="persian cat brown hair"
+          /></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="./images/Persian.jpg" alt="persian cat white hair"
+          /></a>
+        </li>
+        <li>
+          <a href="#"><img src="./images/Siamese.jpg" alt="Siamese cat"/></a>
+        </li>
+      </ul>
+    </section>
+
     <!-- drop zone -->
-    <script src="./dropzone.js"></script>
+    <script src="./scripts/dropzone.js"></script>
     <!-- Load TensorFlow.js. This is required to use MobileNet. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>
     <!-- Load the MobileNet model. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
-
-    <script>
-      // selecting html elements
-      const img = document.getElementById("img");
-      const cat = document.querySelector(".show-cats");
-
-      // "myAwesomeDropzone" is the camelized version of the HTML element's ID
-      Dropzone.options.myAwesomeDropzone = {
-        paramName: "file", // The name that will be used to transfer the file
-        accept: function(file, url, done) {
-          console.log(file);
-          // console.log(file.previewElement);
-          console.log(file.previewTemplate);
-          img.src = file.upload.filename;
-
-          // Tensor
-          // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
-          // Load the model.
-          mobilenet.load().then(model => {
-            console.log(model);
-            // Classify the image.
-            model.classify(img).then(predictions => {
-              let predictionPercent = Math.floor(
-                predictions[0].probability * 100
-              );
-
-              cat.textContent = `Is this a ${predictions[0].className} cat ? I am ${predictionPercent}% sure about this.`;
-
-              console.log(predictions);
-            });
-          });
-          // Tensor
-        }
-      };
-    </script>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
