@@ -1,5 +1,8 @@
 # Simple-Cat-Detection-app
 
+DEMO: https://nickyiliwang.github.io/Simple-Cat-Detection-app/
+
+
 This App is using MobileNet from TensorFlow object detection.
 
 https://github.com/tensorflow/tfjs-models/tree/master/mobilenet
