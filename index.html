@@ -13,19 +13,24 @@
       <h1>Cat Classifier</h1>
 
       <div class="image-container">
-        <img src="./images/Placeholder.jpg" id="img" alt="cat image" />
+        <img
+          src="./images/Placeholder.jpg"
+          id="img"
+          alt="cat image"
+          crossorigin="anonymous"
+        />
       </div>
 
       <!-- results -->
       <h2 class="show-cats"></h2>
       <!-- drag drop form -->
       <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
-        <p class="dz-message">Please Upload your File cat here!</p>
+        <p class="dz-message">Please Upload your cat File here!</p>
       </form>
       <!-- Url form -->
-      <form action="" class="url-upload">
-        <input type="text" />
-        <input type="submit" />
+      <form class="url-upload">
+        <input type="text" class="url-input" />
+        <input type="submit" class="url-submit" />
       </form>
     </div>
 
