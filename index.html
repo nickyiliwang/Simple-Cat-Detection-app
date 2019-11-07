@@ -5,34 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Cat Detect</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <style>
+      img {
+        width: 100%;
+        display: block;
+      }
+
+      form {
+        width: 80%;
+        height: 50px;
+        text-align: center;
+        padding: 10%;
+        border: 3px red dotted;
+        cursor: pointer;
+      }
+
+      .wrapper {
+        margin: 0 auto;
+        max-width: 1440px;
+        width: 80%;
+      }
+
+      .image-container {
+        width: 50%;
+        margin: 50px;
+      }
+
+      .flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 25px;
+        margin-top: 50px;
+      }
+
+      h2 {
+        font-size: 50px;
+        padding: 30px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      .dz-preview {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-    <!-- <img id="img" src="cat.jpg"></img> -->
+    <div class="wrapper flex-container">
+      <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
 
-    <img src="./saian.jpg" id="img" alt="" />
+      <h1>Cat Classifier</h1>
 
+      <div class="image-container">
+        <img src="./saian.jpg" id="img" alt="cat image" />
+      </div>
+
+      <h2 class="show-cats"></h2>
+      <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
+        <p class="dz-message">Please Upload your cat here!</p>
+      </form>
+    </div>
+
+    <!-- drop zone -->
+    <script src="./dropzone.js"></script>
     <!-- Load TensorFlow.js. This is required to use MobileNet. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>
     <!-- Load the MobileNet model. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
 
-    <!-- Place your code in the script tag below. You can also use an external .js file -->
     <script>
-      // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
-      // available on the index-page because of the script tag above.
-
+      // selecting html elements
       const img = document.getElementById("img");
+      const cat = document.querySelector(".show-cats");
 
-      // Load the model.
-      mobilenet.load().then(model => {
-          console.log(model.load)
-        // Classify the image.
-        model.classify(img).then(predictions => {
-        // model.classify(img).then(predictions => {
-          console.log(predictions);
-        });
-      });
+      // "myAwesomeDropzone" is the camelized version of the HTML element's ID
+      Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        accept: function(file, url, done) {
+          console.log(file);
+          // console.log(file.previewElement);
+          console.log(file.previewTemplate);
+          img.src = file.upload.filename;
+
+          // Tensor
+          // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
+          // Load the model.
+          mobilenet.load().then(model => {
+            console.log(model);
+            // Classify the image.
+            model.classify(img).then(predictions => {
+              let predictionPercent = Math.floor(
+                predictions[0].probability * 100
+              );
+
+              cat.textContent = `Is this a ${predictions[0].className} cat ? I am ${predictionPercent}% sure about this.`;
+
+              console.log(predictions);
+            });
+          });
+          // Tensor
+        }
+      };
     </script>
   </body>
 </html>
