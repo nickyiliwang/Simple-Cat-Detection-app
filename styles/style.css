@@ -67,4 +67,5 @@ li img {
   max-height: 100px;
   object-position: top;
   object-fit: contain;
+  cursor: pointer;
 }
