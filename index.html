@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Cat Detect</title>
+    <link rel="icon" type="image/png" href="./styles/images/566682.png" />
+    <!-- font-family: 'Raleway', sans-serif; -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/normalize.css" />
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
@@ -14,7 +20,7 @@
 
       <div class="image-container">
         <img
-          src="./images/Placeholder.jpg"
+          src="./styles/images/Placeholder.jpg"
           id="img"
           alt="cat image"
           crossorigin="anonymous"
@@ -22,53 +28,61 @@
       </div>
 
       <!-- results -->
-      <h2 class="show-cats"></h2>
+      <h2 class="show-cats">Please upload an image to begin </h2>
       <!-- drag drop form -->
-      <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
-        <p class="dz-message">Please Upload your cat File here!</p>
-      </form>
-      <!-- Url form -->
-      <form class="url-upload">
-        <input type="text" class="url-input" />
-        <input type="submit" class="url-submit" />
-      </form>
+      <div class="forms">
+        <form action="/file" class="dropzone" id="my-awesome-dropzone">
+          <p class="dz-message">Click here to upload your favorite cat!</p>
+        </form>
+        <!-- Url form -->
+        <form class="url-upload">
+          <input type="text" class="url-input" placeholder="paste your cat image url here"  />
+          <input type="submit" class="url-submit" />
+        </form>
+      </div>
     </div>
 
     <section class="Examples">
-      <h2>You can select some of these cats to test the app:</h2>
-      <ul>
-        <li>
-          <img
-            class="test-img"
-            src="./images/british-short-hair.webp"
-            alt="british short hair"
-          />
-        </li>
-        <li>
-          <img
-            class="test-img"
-            src="./images/Egyptian.jpg"
-            alt="egyptian cat"
-          />
-        </li>
-        <li>
-          <img
-            class="test-img"
-            src="./images/Persian 2.jpg"
-            alt="persian cat brown hair"
-          />
-        </li>
-        <li>
-          <img
-            class="test-img"
-            src="./images/Persian.jpg"
-            alt="persian cat white hair"
-          />
-        </li>
-        <li>
-          <img class="test-img" src="./images/Siamese.jpg" alt="Siamese cat" />
-        </li>
-      </ul>
+      <div class="wrapper">
+        <h3>You can select some of these cats to test the app:</h3>
+        <ul>
+          <li>
+            <img
+              class="test-img"
+              src="./styles/images/tabby.jpg"
+              alt="british short hair"
+            />
+          </li>
+          <li>
+            <img
+              class="test-img"
+              src="./styles/images/Egyptian.jpg"
+              alt="egyptian cat"
+            />
+          </li>
+          <li>
+            <img
+              class="test-img"
+              src="./styles/images/Persian 2.jpg"
+              alt="persian cat brown hair"
+            />
+          </li>
+          <li>
+            <img
+              class="test-img"
+              src="./styles/images/Persian.jpg"
+              alt="persian cat white hair"
+            />
+          </li>
+          <li>
+            <img
+              class="test-img"
+              src="./styles/images/Siamese.jpg"
+              alt="Siamese cat"
+            />
+          </li>
+        </ul>
+      </div>
     </section>
 
     <!-- drop zone -->
